@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="compress()">Compress</button>
+
+  <script type="module">
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'unit',
+      unit: 'megabyte', // or 'byte', 'kilobyte', 'gigabyte', etc.
+      unitDisplay: 'short' // or 'narrow', 'long'
+    })
+
+    function getFile() {
+      const input = document.createElement('input')
+      input.type = 'file'
+      input.accept = 'image/*'
+
+      return new Promise((resolve) => {
+        input.onchange = (e) => {
+          const file = e.target.files[0]
+          resolve(file)
+        }
+        input.click()
+
+        console.log('Input element created and clicked')
+      })
+    }
+
+    function download(blob, extension) {
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'compressed_image.' + extension
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    }
+
+    async function compress() {
+      const worker = new Worker('./worker.js', { type: 'module' })
+
+      const file = await getFile()
+      const bytes = new Uint8Array(await file.arrayBuffer())
+
+      return new Promise((resolve, reject) => {
+        // Listen for response
+        worker.addEventListener('message', async (event) => {
+          worker.terminate();
+
+          const bytes = event.data
+          const file = new Blob([bytes], { type: 'image/jpeg' })
+
+          download(file, 'jpg')
+          console.log('Compressed File:', formatter.format(file.size / (1024 * 1024)))
+        });
+
+        const job = {
+          type: 'image/jpeg',
+          data: bytes,
+          maxHeight: 1440
+        }
+
+        worker.postMessage(job, [bytes.buffer]);
+      })
+    }
+
+    window.compress = compress
+  </script>
+</body>
+
+</html>

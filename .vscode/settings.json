@@ -1,0 +1,7 @@
+{
+  "explorer.fileNesting.patterns": {
+    "build.gradle": "settings.gradle,gradlew,gradlew.bat",
+    ".flutter-plugins": ".flutter-plugins-dependencies",
+    "*.dart": "$(capture)_*.dart,$(capture).*.dart,",
+  }
+}
