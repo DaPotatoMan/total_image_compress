@@ -3,7 +3,7 @@ import 'dart:typed_data';
 enum ImageFormat { jpg, png }
 
 abstract class FastCompressBase {
-  const FastCompressBase({this.format = ImageFormat.jpg, this.maxHeight, this.quality = 90});
+  const FastCompressBase({this.format = ImageFormat.jpg, this.maxHeight, this.quality = 100});
 
   final ImageFormat format;
   final int? maxHeight;
