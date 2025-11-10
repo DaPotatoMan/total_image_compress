@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'dart:typed_data';
 
-import 'package:fast_image_compress/src/core.dart';
+import 'package:total_image_compress/src/core.dart';
 import 'package:web/web.dart' as web;
 
-class FastCompress extends FastCompressBase {
-  FastCompress({super.format, super.maxHeight, super.quality});
+class TotalCompress extends TotalCompressBase {
+  TotalCompress({super.format, super.maxHeight, super.quality});
 
   @override
   process(source) {
     final promise = Completer<Uint8List>();
     final worker = web.Worker(
-      './assets/packages/fast_image_compress/assets/worker.mjs'.toJS,
+      './assets/packages/total_image_compress/assets/worker.mjs'.toJS,
       web.WorkerOptions(type: 'module'),
     );
 

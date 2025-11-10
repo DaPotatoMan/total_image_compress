@@ -1,8 +1,8 @@
-import 'package:fast_image_compress/src/core.dart';
 import 'package:image/image.dart' deferred as image;
+import 'package:total_image_compress/src/core.dart';
 
-class FastCompress extends FastCompressBase {
-  FastCompress({super.format, super.maxHeight, super.quality});
+class TotalCompress extends TotalCompressBase {
+  TotalCompress({super.format, super.maxHeight, super.quality});
 
   @override
   process(source) async {

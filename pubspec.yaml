@@ -1,7 +1,7 @@
-name: fast_image_compress
+name: total_image_compress
 description: A Flutter package for fast image compression
 version: 0.0.1
-homepage: https://github.com/DaPotatoMan/fast_image_compress
+homepage: https://github.com/DaPotatoMan/total_image_compress
 
 environment:
   sdk: ">=3.0.0"

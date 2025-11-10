@@ -1,1 +1,1 @@
-### fast_image_compress
+### total_image_compress
