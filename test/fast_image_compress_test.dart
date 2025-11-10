@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fast_image_compress/fast_image_compress.dart';
-import 'package:fast_image_compress/src/vm.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() async {

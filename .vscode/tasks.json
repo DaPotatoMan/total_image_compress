@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "flutter test -d windows; flutter test --platform chrome --wasm",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
